@@ -40,10 +40,10 @@ class Board:
       """
       for i in range(amt):
           if i % 2 == 0:
-              self.board[row_pos_0][col_pos_0] = piece(0)
+              self.board[row_pos_0][col_pos_0] = piece(1)
               col_pos_0 += inc
           else:
-              self.board[row_pos_1][col_pos_1] = piece(1)
+              self.board[row_pos_1][col_pos_1] = piece(0)
               col_pos_1 += inc
 
   def create_pieces(self):
