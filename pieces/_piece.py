@@ -1,9 +1,10 @@
 class Piece:
 
-  def __init__(self, color, xLoc, yLoc):
-    self.color = color
-    self.xLoc = xLoc
-    self.yLoc = yLoc
+  def __init__(self, team):
+    self.team = team
 
   def move(self):
+    pass
+
+  def __str__(self):
     pass
