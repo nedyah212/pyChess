@@ -1,4 +1,5 @@
 from pieces.pawn import Pawn
+from pieces.rook import Rook
 
 class Board:
 
@@ -18,21 +19,32 @@ class Board:
     return board
   
   def create_pawns(self):
-    count_team_zero = 0
-    count_team_one = 0
+    position_team_zero = 0
+    position_team_one = 0
     
     for i in range(16):
       if i % 2 == 0:
-        self.board[1][count_team_zero] = Pawn(0)
-        print(f"zero: {count_team_zero}")
-        count_team_zero += 1        
+        self.board[1][position_team_zero] = Pawn(0)
+        position_team_zero += 1        
       else:
-        self.board[6][count_team_one] = Pawn(1)
-        print(f"one: {count_team_one}")
-        count_team_one += 1 
+        self.board[6][position_team_one] = Pawn(1)
+        position_team_one += 1
+
+  def create_rooks(self):
+    position_team_zero = 0
+    position_team_one = 0
+
+    for i in range(4):
+      if i % 2 == 0:
+        self.board[0][position_team_zero] = Rook(0)
+        position_team_zero += 7
+      else:
+        self.board[7][position_team_one] = Rook(1)
+        position_team_one += 7 
 
   def create_pieces(self):
     self.create_pawns()
+    self.create_rooks()
 
   def __str__(self):
       result = "\n8 "
