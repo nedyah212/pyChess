@@ -14,12 +14,12 @@ class Board:
         row.append(' ')
       board.append(row)
     return board
-
+  
   def __str__(self):
       result = "\n8 "
       for r in range(7,-1,-1):
           result += "|"
-          for c in range(7,-1,-1):
+          for c in range(8):
               result += self.board[r][c] + "|"
           
           if r == 0:
