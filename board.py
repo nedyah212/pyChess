@@ -22,17 +22,15 @@ class Board:
       board.append(row)
     return board
   
-  def _create_type(self, row_pos_0, col_pos_0, row_pos_1, col_pos_1, amt, piece, inc):
+  def _create_type(self, team_zero_pos, team_one_pos,  piece, amt, inc):
       """
       Places pieces for both teams in alternating fashion across specified positions.
       
       Args:
-          row_pos_0: Starting row position for team 0
-          col_pos_0: Starting column position for team 0
-          row_pos_1: Starting row position for team 1
-          col_pos_1: Starting column position for team 1
-          amt: Total number of pieces to place (split evenly between teams)
+          team_zero_pos: int list - [row, col] position for team 1
+          team_one_pos: int list - [row, col ] position for team 0
           piece: Piece class to instantiate
+          amt: Total number of pieces to place (split evenly between teams)
           inc: Column increment value for each placement
       
       Returns:
@@ -40,19 +38,19 @@ class Board:
       """
       for i in range(amt):
           if i % 2 == 0:
-              self.board[row_pos_0][col_pos_0] = piece(1)
-              col_pos_0 += inc
+              self.board[team_zero_pos[0]][team_zero_pos[1]] = piece(1)
+              team_zero_pos[1] += inc
           else:
-              self.board[row_pos_1][col_pos_1] = piece(0)
-              col_pos_1 += inc
+              self.board[team_one_pos[0]][team_one_pos[1]] = piece(0)
+              team_one_pos[1] += inc
 
   def create_pieces(self):
-    self._create_type(1, 0, 6, 0, 16, Pawn, 1)
-    self._create_type(0, 0, 7, 0, 4, Rook, 7)
-    self._create_type(0, 1, 7, 1, 4, Knight, 5)
-    self._create_type(0, 2, 7, 2, 4, Bishop, 3)
-    self._create_type(0, 3, 7, 3, 2, Queen, 0)
-    self._create_type(0, 4, 7, 4, 2, King, 0)
+    self._create_type([1, 0], [6, 0], Pawn, 16,  1)
+    self._create_type([0, 0], [7, 0], Rook, 4,  7)
+    self._create_type([0, 1], [7, 1], Knight, 4,  5)
+    self._create_type([0, 2], [7, 2], Bishop, 4,  3)
+    self._create_type([0, 3], [7, 3], Queen, 2,  0)
+    self._create_type([0, 4], [7, 4], King, 2,  0)
     
   def __str__(self):
       result = "\n8 "
