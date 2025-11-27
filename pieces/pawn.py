@@ -2,10 +2,11 @@ from pieces._piece import Piece
 
 class Pawn(Piece):
 
-  def __init__(self):
-    self.team_to_col = {0: 1, 1: 6}
-    self.start_row = self.team_to_col[self.team]
-
+  def __init__(self, team):
+    super().__init__(team)
+    self.has_moved = False
+    self.direction = self.team * -1 
+  
   def move(self):
     pass
 

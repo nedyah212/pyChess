@@ -69,7 +69,7 @@ class Board:
             result += f"\n{r} "
       return result
 
-
 board = Board()
+board.clear()
 board.create_pieces()
 print(board)
