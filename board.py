@@ -21,66 +21,6 @@ class Board:
         row.append(' ')
       board.append(row)
     return board
-  
-  def _create_pawns(self):
-    position_team_zero = 0
-    position_team_one = 0
-    
-    for i in range(16):
-      if i % 2 == 0:
-        self.board[1][position_team_zero] = Pawn(0)
-        position_team_zero += 1        
-      else:
-        self.board[6][position_team_one] = Pawn(1)
-        position_team_one += 1
-
-  def _create_rooks(self):
-    position_team_zero = 0
-    position_team_one = 0
-
-    for i in range(4):
-      if i % 2 == 0:
-        self.board[0][position_team_zero] = Rook(0)
-        position_team_zero += 7
-      else:
-        self.board[7][position_team_one] = Rook(1)
-        position_team_one += 7
-
-  def _create_knights(self):
-    position_team_zero = 1
-    position_team_one = 1
-
-    for i in range(4):
-      if i % 2 == 0:
-        self.board[0][position_team_zero] = Knight(0)
-        position_team_zero += 5
-      else:
-        self.board[7][position_team_one] = Knight(1)
-        position_team_one += 5
-
-  def _create_bishops(self):
-    position_team_zero = 2
-    position_team_one = 2
-
-    for i in range(4):
-      if i % 2 == 0:
-        self.board[0][position_team_zero] = Bishop(0)
-        position_team_zero += 3
-      else:
-        self.board[7][position_team_one] = Bishop(1)
-        position_team_one += 3
-
-  def _create_queens(self):
-    position_team_zero = 3
-    position_team_one = 3
-
-    for i in range(2):
-      if i % 2 == 0:
-        self.board[0][position_team_zero] = Queen(0)
-        position_team_zero += 0
-      else:
-        self.board[7][position_team_one] = Queen(1)
-        position_team_one += 0
 
   def _create_kings(self):
     position_team_zero = 4
@@ -93,15 +33,23 @@ class Board:
       else:
         self.board[7][position_team_one] = King(1)
         position_team_one += 0
-
+  
+  def _create_type(self, row_pos_0, col_pos_0, row_pos_1, col_pos_1, amt, piece, inc):
+      for i in range(amt):
+          if i % 2 == 0:
+              self.board[row_pos_0][col_pos_0] = piece(0)
+              col_pos_0 += inc
+          else:
+              self.board[row_pos_1][col_pos_1] = piece(1)
+              col_pos_1 += inc 
 
   def create_pieces(self):
-    self._create_pawns()
-    self._create_rooks()
-    self._create_knights()
-    self._create_bishops()
-    self._create_queens()
-    self._create_kings()
+    self._create_type(1, 0, 6, 0, 16, Pawn, 1)
+    self._create_type(0, 0, 7, 0, 4, Rook, 7)
+    self._create_type(0, 1, 7, 1, 4, Knight, 5)
+    self._create_type(0, 2, 7, 2, 4, Bishop, 3)
+    self._create_type(0, 3, 7, 3, 2, Queen, 0)
+    self._create_type(0, 4, 7, 4, 2, King, 0)
     
   def __str__(self):
       result = "\n8 "
