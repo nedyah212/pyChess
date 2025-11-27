@@ -21,27 +21,30 @@ class Board:
         row.append(' ')
       board.append(row)
     return board
-
-  def _create_kings(self):
-    position_team_zero = 4
-    position_team_one = 4
-
-    for i in range(2):
-      if i % 2 == 0:
-        self.board[0][position_team_zero] = King(0)
-        position_team_zero += 0
-      else:
-        self.board[7][position_team_one] = King(1)
-        position_team_one += 0
   
   def _create_type(self, row_pos_0, col_pos_0, row_pos_1, col_pos_1, amt, piece, inc):
+      """
+      Places pieces for both teams in alternating fashion across specified positions.
+      
+      Args:
+          row_pos_0: Starting row position for team 0
+          col_pos_0: Starting column position for team 0
+          row_pos_1: Starting row position for team 1
+          col_pos_1: Starting column position for team 1
+          amt: Total number of pieces to place (split evenly between teams)
+          piece: Piece class to instantiate
+          inc: Column increment value for each placement
+      
+      Returns:
+          None
+      """
       for i in range(amt):
           if i % 2 == 0:
               self.board[row_pos_0][col_pos_0] = piece(0)
               col_pos_0 += inc
           else:
               self.board[row_pos_1][col_pos_1] = piece(1)
-              col_pos_1 += inc 
+              col_pos_1 += inc
 
   def create_pieces(self):
     self._create_type(1, 0, 6, 0, 16, Pawn, 1)
