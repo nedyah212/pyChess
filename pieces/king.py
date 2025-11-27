@@ -1,4 +1,4 @@
-from _piece import Piece
+from pieces._piece import Piece
 
 class King(Piece):
 

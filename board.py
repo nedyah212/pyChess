@@ -1,5 +1,9 @@
 from pieces.pawn import Pawn
 from pieces.rook import Rook
+from pieces.knight import Knight
+from pieces.bishop import Bishop
+from pieces.queen import Queen
+from pieces.king import King
 
 class Board:
 
@@ -18,7 +22,7 @@ class Board:
       board.append(row)
     return board
   
-  def create_pawns(self):
+  def _create_pawns(self):
     position_team_zero = 0
     position_team_one = 0
     
@@ -30,7 +34,7 @@ class Board:
         self.board[6][position_team_one] = Pawn(1)
         position_team_one += 1
 
-  def create_rooks(self):
+  def _create_rooks(self):
     position_team_zero = 0
     position_team_one = 0
 
@@ -40,12 +44,65 @@ class Board:
         position_team_zero += 7
       else:
         self.board[7][position_team_one] = Rook(1)
-        position_team_one += 7 
+        position_team_one += 7
+
+  def _create_knights(self):
+    position_team_zero = 1
+    position_team_one = 1
+
+    for i in range(4):
+      if i % 2 == 0:
+        self.board[0][position_team_zero] = Knight(0)
+        position_team_zero += 5
+      else:
+        self.board[7][position_team_one] = Knight(1)
+        position_team_one += 5
+
+  def _create_bishops(self):
+    position_team_zero = 2
+    position_team_one = 2
+
+    for i in range(4):
+      if i % 2 == 0:
+        self.board[0][position_team_zero] = Bishop(0)
+        position_team_zero += 3
+      else:
+        self.board[7][position_team_one] = Bishop(1)
+        position_team_one += 3
+
+  def _create_queens(self):
+    position_team_zero = 3
+    position_team_one = 3
+
+    for i in range(2):
+      if i % 2 == 0:
+        self.board[0][position_team_zero] = Queen(0)
+        position_team_zero += 0
+      else:
+        self.board[7][position_team_one] = Queen(1)
+        position_team_one += 0
+
+  def _create_kings(self):
+    position_team_zero = 4
+    position_team_one = 4
+
+    for i in range(2):
+      if i % 2 == 0:
+        self.board[0][position_team_zero] = King(0)
+        position_team_zero += 0
+      else:
+        self.board[7][position_team_one] = King(1)
+        position_team_one += 0
+
 
   def create_pieces(self):
-    self.create_pawns()
-    self.create_rooks()
-
+    self._create_pawns()
+    self._create_rooks()
+    self._create_knights()
+    self._create_bishops()
+    self._create_queens()
+    self._create_kings()
+    
   def __str__(self):
       result = "\n8 "
       for r in range(7,-1,-1):
