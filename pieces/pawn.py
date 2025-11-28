@@ -13,10 +13,6 @@ class Pawn(Piece):
       board = board.get_board
       
       # Forward move
-      print("\nshort forward move")
-      print(xLoc)
-      print(board[yLoc + -1 * self.direction][xLoc])
-      print(board[yLoc + -1 * self.direction][xLoc] == ' ')
       if board[yLoc + -1 * self.direction][xLoc] == ' ':
           moves.append([yLoc + self.direction * -1, xLoc])
           
@@ -38,7 +34,6 @@ class Pawn(Piece):
           target = board[yLoc + -1 * self.direction][xLoc - 1]
           if target != ' ' and target.team != team:
               moves.append([yLoc + self.direction * -1, xLoc - 1])
-      print(moves)
       return moves
   
   def move(self):
