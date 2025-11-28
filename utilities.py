@@ -14,35 +14,42 @@ class Utilities:
         Returns:
             list: [row, column] as integers OR error message string
         """
-        letter_to_index = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7}
-        
+        letter_to_index = {'a': 7, 'b': 6, 'c': 5, 'd': 4, 'e': 3, 'f': 2, 'g': 1, 'h': 0}
+
         try:
             selection = input("\nEnter a piece to move: ")
             selection = ''.join(c for c in selection if c.isalnum())
             selection = list(selection)
             
+            if selection is None:
+                raise ValueError("The entry cannot be empty,")
+
             if len(selection) != 2:
-                raise ValueError("The position must be two digits, ")
+                raise ValueError("Wrong amount of characters,")
             
             if selection[0] in letter_to_index.keys():
                 selection[0] = letter_to_index[selection[0]]
+            
             elif selection[0].isdigit():
                 selection[0] = int(selection[0])
+            
             else:
-                raise ValueError("Column input invalid, ")
+                raise ValueError("Entry is not valid,")
             
             if not selection[1].isdigit():
-                raise ValueError("Row must be a digit, ")
+                raise ValueError("The second value must be a digit,")
+            
             selection[1] = int(selection[1])
             
             if selection[0] not in range(8):
-                raise ValueError("Column input invalid, ")
+                raise ValueError("The first value must be a-h or 0-7,")
+            
             if selection[1] not in range(8):
-                raise ValueError("Row input invalid, ")
+                raise ValueError("The second value must be 0-7,")
                 
         except ValueError as e:
-            return None, f"{e}please try again"
+            selection = f"{e} please try again."
         except KeyError as e:
-            return f"{e}please try again"
+            selection = f"{e} please try again"
         
         return selection

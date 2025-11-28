@@ -39,7 +39,7 @@ class Board:
       """
       for i in range(amount):
           if i % 2 == 1:
-              self._board[black_pos[0]][black_pos[1]] = piece(-1)
+              self._board[black_pos[0]][black_pos[1]] = piece(0)
               black_pos[1] += increment
           else:
               self._board[white_pos[0]][white_pos[1]] = piece(1)
