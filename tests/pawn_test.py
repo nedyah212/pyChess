@@ -110,15 +110,19 @@ def test_white_pawn_starting_position_four_moves():
     try:
         board = Board()
         current_board = board.get_board
+        
         current_board[6][3] = Pawn(1)  # white pawn at start
         current_board[5][2] = Pawn(0)  # black pawn left diagonal
         current_board[5][4] = Pawn(0)  # black pawn right diagonal
+        
         moves = current_board[6][3].get_possible_moves(board, 6, 3)
+        
         assert [5, 3] in moves  # one forward
         assert [4, 3] in moves  # two forward
         assert [5, 2] in moves  # attack left
         assert [5, 4] in moves  # attack right
         assert len(moves) == 4
+        
         print("test #5: test_white_pawn_starting_position_four_moves -- passed")
     except AssertionError as e:
         print(f"Test #5 failed: {e}")
@@ -131,15 +135,19 @@ def test_black_pawn_starting_position_four_moves():
     try:
         board = Board()
         current_board = board.get_board
+        
         current_board[1][4] = Pawn(0)  # black pawn at start
         current_board[2][3] = Pawn(1)  # white pawn left diagonal
         current_board[2][5] = Pawn(1)  # white pawn right diagonal
+        
         moves = current_board[1][4].get_possible_moves(board, 1, 4)
+        
         assert [2, 4] in moves  # one forward
         assert [3, 4] in moves  # two forward
         assert [2, 3] in moves  # attack left
         assert [2, 5] in moves  # attack right
         assert len(moves) == 4
+        
         print("test #6: test_black_pawn_starting_position_four_moves -- passed")
     except AssertionError as e:
         print(f"Test #6 failed: {e}")

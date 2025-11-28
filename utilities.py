@@ -3,12 +3,17 @@ import time
 class Utilities:
     
     @staticmethod
-    def get_selection():
+    def get_selection(move_to_pos = False):
         letter_to_index = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8}
         reverse_int_index = {8: 1, 7: 2, 6: 3, 5: 4, 4: 5, 3: 6, 2: 7, 1: 8}
         
+        if move_to_pos:
+            msg = "\nEnter a location to move to: "
+        else:
+            msg = "\nEnter a piece to move: "
+
         try:
-            selection = input("\nEnter a piece to move: ")
+            selection = input(msg)
             selection = ''.join(c for c in selection if c.isalnum())
             
             if len(selection) != 2:

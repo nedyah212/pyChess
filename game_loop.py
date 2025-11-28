@@ -40,12 +40,30 @@ while not game_over:
           not_valid = True
       else:
           not_valid = False
+          
           #Get moves based on piece type and location
           current_board = board.get_board
           target = current_board[piece_to_move[1]][piece_to_move[0]]
           moves = target.get_possible_moves(board, piece_to_move[1], piece_to_move[0])
           
+          #Get and validate second move location
+          pos_to_move_to = None
+          while pos_to_move_to is None:
+            pos_to_move_to, msg = Utilities.get_selection(True)
+            
+            print(moves)
+            location = []
+            location.append(pos_to_move_to[1])
+            location.append(pos_to_move_to[0])
+            print(location)
 
+            if pos_to_move_to[1] is None or pos_to_move_to[0] is None:
+                print(msg)
+                pos_to_move_to = None
+            
+            if location not in moves: 
+                print("That is not a valid move")
+                pos_to_move_to = None  
   turn += 1
 
 
