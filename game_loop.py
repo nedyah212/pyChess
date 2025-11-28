@@ -22,17 +22,17 @@ while not game_over:
   #Get/validate piece to move
   not_valid = True
   while not_valid:  
-      piece_to_move = [None, None]
-      while piece_to_move[0] is None: 
-          piece_to_move = Utilities.get_selection()
-          print(type(piece_to_move))
-          print(isinstance(piece_to_move, str))
-          if (isinstance(piece_to_move, str)):
-            print(piece_to_move)
-            selection = None
+      piece_to_move = None
+      while piece_to_move is None: 
+          piece_to_move, msg = Utilities.get_selection()
+          if piece_to_move[0] is None or piece_to_move[1] is None:
+            print(msg)
+            piece_to_move = None
 
-      info = board.get_pos_information(piece_to_move[0], piece_to_move[1])
+
+      info = board.get_pos_information(piece_to_move[1], piece_to_move[0])
       if info["is_occupied"] == False or team_to_color[info["team"]] != team_to_color[turn%2]:
+          print("That is not a valid piece to move, please try again")
           not_valid = True
       else:
           not_valid = False
