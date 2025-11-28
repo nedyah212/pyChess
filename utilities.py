@@ -4,8 +4,8 @@ class Utilities:
     
     @staticmethod
     def get_selection():
-        letter_to_index = {'a': 7, 'b': 6, 'c': 5, 'd': 4, 'e': 3, 'f': 2, 'g': 1, 'h': 0}
-        reverse_int_index = {8: 0, 7: 1, 6: 2, 5: 3, 4: 4, 3: 5, 2: 6, 1: 7}
+        letter_to_index = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8}
+        reverse_int_index = {8: 1, 7: 2, 6: 3, 5: 4, 4: 5, 3: 6, 2: 7, 1: 8}
         
         try:
             selection = input("\nEnter a piece to move: ")
@@ -20,13 +20,13 @@ class Utilities:
             if selection[0].isalpha():
                 if selection[0].lower() not in letter_to_index:
                     raise ValueError("First character must be a-h")
-                result[0] = letter_to_index[selection[0].lower()]
+                result[0] = letter_to_index[selection[0].lower()] - 1 
             
             elif selection[0].isdigit():
                 num = int(selection[0])
                 if num not in reverse_int_index:
                     raise ValueError("First digit must be 1-8")
-                result[0] = reverse_int_index[num]
+                result[0] = num - 1 
             else:
                 raise ValueError("An unexpected error has occured")
             
@@ -38,7 +38,7 @@ class Utilities:
             if num not in reverse_int_index:
                 raise ValueError("Second digit must be 1-8")
             
-            result[1] = reverse_int_index[num]
+            result[1] = reverse_int_index[num] - 1
             
             return result, ""
             

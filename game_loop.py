@@ -19,25 +19,33 @@ while not game_over:
   print(f"\nTurn: {turn}, {team_to_color[turn%2]}'s Turn")
   print(board)
   
-  #Get/validate piece to move
+  #Moving player selects game piece to be moved
   not_valid = True
   while not_valid:  
+      
       piece_to_move = None
-      while piece_to_move is None: 
+      while piece_to_move is None:
+          
+          #Selected goes through input sanitation, validation 
           piece_to_move, msg = Utilities.get_selection()
           if piece_to_move[0] is None or piece_to_move[1] is None:
             print(msg)
             piece_to_move = None
 
-
+      #Selected piece is validated based on team
+      
       info = board.get_pos_information(piece_to_move[1], piece_to_move[0])
       if info["is_occupied"] == False or team_to_color[info["team"]] != team_to_color[turn%2]:
           print("That is not a valid piece to move, please try again")
           not_valid = True
       else:
           not_valid = False
+          #Get moves based on piece type and location
+          current_board = board.get_board
+          target = current_board[piece_to_move[1]][piece_to_move[0]]
+          moves = target.get_possible_moves(board, piece_to_move[1], piece_to_move[0])
+          
 
   turn += 1
-
 
 

@@ -8,6 +8,13 @@ from pieces.king import King
 
 class Board:
 
+  @property
+  def get_board(self):
+    return self._board
+
+  def set_board(self, board):
+    self._board = board
+
   def __init__(self):
     self._board = self.clear()
     self.position_int_to_char = {
