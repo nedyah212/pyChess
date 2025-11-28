@@ -13,27 +13,28 @@ class Pawn(Piece):
       board = board.get_board
       
       # Forward move
-      if board[yLoc + -1 * self.direction][xLoc] == ' ':
-          moves.append([yLoc + self.direction * -1, xLoc])
-          
-          # Double move from starting position
-          if self.at_initial_pos:
-              if board[yLoc -2 * self.direction][xLoc] == ' ':
-                  moves.append([yLoc + self.direction * -2, xLoc])
+      if board[yLoc + self.direction][xLoc] == ' ':
+          moves.append([yLoc + self.direction, xLoc])
+      
+      # Double move from starting position
+      if self.at_initial_pos:
+          if board[yLoc + 2 * self.direction][xLoc] == ' ':
+              moves.append([yLoc + 2 * self.direction, xLoc])
       
       team = self.team
       
       # Diagonal capture right
       if xLoc + 1 <= 7:
-          target = board[yLoc + -1 * self.direction][xLoc + 1]
+          target = board[yLoc + self.direction][xLoc + 1]
           if target != ' ' and target.team != team:
-              moves.append([yLoc + self.direction * -1, xLoc + 1])
+              moves.append([yLoc + self.direction, xLoc + 1])
       
       # Diagonal capture left
       if xLoc - 1 >= 0:
-          target = board[yLoc + -1 * self.direction][xLoc - 1]
+          target = board[yLoc + self.direction][xLoc - 1]
           if target != ' ' and target.team != team:
-              moves.append([yLoc + self.direction * -1, xLoc - 1])
+              moves.append([yLoc + self.direction, xLoc - 1])
+      
       return moves
   
   def move(self):

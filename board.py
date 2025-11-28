@@ -53,12 +53,12 @@ class Board:
               white_pos[1] += increment
 
   def create_pieces(self):
-    self._create_type([1, 0], [6, 0], Pawn, 16,  1)
-    self._create_type([0, 0], [7, 0], Rook, 4,  7)
-    self._create_type([0, 1], [7, 1], Knight, 4,  5)
-    self._create_type([0, 2], [7, 2], Bishop, 4,  3)
-    self._create_type([0, 3], [7, 3], Queen, 2,  0)
-    self._create_type([0, 4], [7, 4], King, 2,  0)
+      self._create_type([6, 0], [1, 0], Pawn, 16, 1)   # Swap these
+      self._create_type([7, 0], [0, 0], Rook, 4, 7)    # Swap these
+      self._create_type([7, 1], [0, 1], Knight, 4, 5)  # Swap these
+      self._create_type([7, 2], [0, 2], Bishop, 4, 3)  # Swap these
+      self._create_type([7, 3], [0, 3], Queen, 2, 0)   # Swap these
+      self._create_type([7, 4], [0, 4], King, 2, 0)   
   
   def get_pos_information(self, yPos, xPos):
     """
