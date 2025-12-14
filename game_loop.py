@@ -11,7 +11,7 @@ from utilities import Utilities
 game_over = False
 board = Board()
 board.create_pieces()
-team_to_color = {1: "White", 0: "Black"}
+team_to_color = {1: "Red", 0: "Green"}
 turn = 1
 
 #start game loop 
@@ -46,6 +46,14 @@ while not game_over:
           target = current_board[piece_to_move[1]][piece_to_move[0]]
           moves = target.get_possible_moves(board, piece_to_move[1], piece_to_move[0])
           print(f"DEBUG main: target piece={target}")
+          
+          #Get starting count of pieces
+          old_count = 0
+          for y in range(8):
+            for x in range(8):
+                count_target = current_board[y][x]
+                if count_target and count_target != ' ':
+                    old_count += 1
 
           #Get and validate second move location
           pos_to_move_to = None
@@ -69,8 +77,20 @@ while not game_over:
           current_board[piece_to_move[1]][piece_to_move[0]] = ' '
           print(f"{location[0]}{location[1]}")
           current_board[location[0]][location[1]] = target
+          target.has_moved = True
           print(f"DEBUG main: piece_to_move={piece_to_move}")
           print(f"DEBUG main: accessing board[{piece_to_move[1]}][{piece_to_move[0]}]")
+          
+          #Get ending count of 
+          new_count = 0
+          for y in range(8):
+            for x in range(8):
+                count_target = current_board[y][x]
+                if count_target and count_target != ' ':
+                    new_count += 1
+
+          if old_count != new_count:
+            print("Collision detected, piece captured at [{current_location[1]},{current_location[0]}]")
   turn += 1
 
 

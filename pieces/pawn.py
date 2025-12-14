@@ -16,24 +16,24 @@ class Pawn(Piece):
       if board[yLoc + self.direction][xLoc] == ' ':
           moves.append([yLoc + self.direction, xLoc])
       
-      # Double move from starting position
-      if self.at_initial_pos:
-          if board[yLoc + 2 * self.direction][xLoc] == ' ':
-              moves.append([yLoc + 2 * self.direction, xLoc])
+          # Double move from starting position
+          if self.at_initial_pos:
+              if board[yLoc + 2 * self.direction][xLoc] == ' ':
+                  moves.append([yLoc + 2 * self.direction, xLoc])
       
       team = self.team
       
       # Diagonal capture right
       if xLoc + 1 <= 7:
-          target = board[yLoc + self.direction][xLoc + 1]
-          if target != ' ' and target.team != team:
-              moves.append([yLoc + self.direction, xLoc + 1])
+        target = board[yLoc + self.direction][xLoc + 1]
+        if target != ' ' and target.team != team:
+          moves.append([yLoc + self.direction, xLoc + 1])
       
       # Diagonal capture left
       if xLoc - 1 >= 0:
-          target = board[yLoc + self.direction][xLoc - 1]
-          if target != ' ' and target.team != team:
-              moves.append([yLoc + self.direction, xLoc - 1])
+        target = board[yLoc + self.direction][xLoc - 1]
+        if target != ' ' and target.team != team:
+          moves.append([yLoc + self.direction, xLoc - 1])
       
       return moves
   
@@ -41,4 +41,5 @@ class Pawn(Piece):
     valid_moves = []
     
   def __str__(self):
-    return 'P'
+    ansi = self.get_ansi()
+    return ansi[0] + 'P' + ansi[1]
