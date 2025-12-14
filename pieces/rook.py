@@ -28,9 +28,6 @@ class Rook(Piece):
       
       return moves
 
-  def move(self):
-    pass
-
   def __str__(self):
     ansi = self.get_ansi()
     return ansi[0] + 'R' + ansi[1]

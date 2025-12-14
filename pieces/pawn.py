@@ -36,9 +36,6 @@ class Pawn(Piece):
           moves.append([yLoc + self.direction, xLoc - 1])
       
       return moves
-  
-  def move(self):
-    valid_moves = []
     
   def __str__(self):
     ansi = self.get_ansi()

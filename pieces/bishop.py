@@ -28,9 +28,6 @@ class Bishop(Piece):
     
     return moves
 
-  def move(self):
-    pass
-
   def __str__(self):
     ansi = self.get_ansi()
     return ansi[0] + 'B' + ansi[1]

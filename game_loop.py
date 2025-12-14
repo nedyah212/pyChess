@@ -12,11 +12,14 @@ game_over = False
 board = Board()
 board.create_pieces()
 team_to_color = {1: "Red", 0: "Green"}
+team_0_piece_count = 16
+team_1_piece_count = 16
 turn = 1
 
 #start game loop 
 while not game_over:
-  print(f"\nTurn: {turn}, {team_to_color[turn%2]}'s Turn")
+  color = team_to_color[turn%2]
+  print(f"\nTurn {turn}, {color}'s Turn")
   print(board)
   
   #Moving player selects game piece to be moved
@@ -47,14 +50,6 @@ while not game_over:
           moves = target.get_possible_moves(board, piece_to_move[1], piece_to_move[0])
           print(f"DEBUG main: target piece={target}")
           
-          #Get starting count of pieces
-          old_count = 0
-          for y in range(8):
-            for x in range(8):
-                count_target = current_board[y][x]
-                if count_target and count_target != ' ':
-                    old_count += 1
-
           #Get and validate second move location
           pos_to_move_to = None
           while pos_to_move_to is None:
@@ -74,23 +69,23 @@ while not game_over:
 
           #Move piece to new location
           print (f"{piece_to_move[1]}{piece_to_move[0]}")
+          new_location = current_board[location[0]][location[1]]
+
+          if new_location != ' ' and target.team != new_location.team:
+            print(f"\nCollision detected, piece captured at [{location[1]},{location[0]}]")
+            which_count = team_0_piece_count if target.team == 1 else team_1_piece_count
+            which_count -= 1
+            opp_team = 1 if turn == 0 else 1
+            print(f"{team_to_color[opp_team]} team lost a piece.")
+
           current_board[piece_to_move[1]][piece_to_move[0]] = ' '
           print(f"{location[0]}{location[1]}")
           current_board[location[0]][location[1]] = target
-          target.has_moved = True
           print(f"DEBUG main: piece_to_move={piece_to_move}")
           print(f"DEBUG main: accessing board[{piece_to_move[1]}][{piece_to_move[0]}]")
           
-          #Get ending count of 
-          new_count = 0
-          for y in range(8):
-            for x in range(8):
-                count_target = current_board[y][x]
-                if count_target and count_target != ' ':
-                    new_count += 1
+          
 
-          if old_count != new_count:
-            print("Collision detected, piece captured at [{current_location[1]},{current_location[0]}]")
   turn += 1
 
 
